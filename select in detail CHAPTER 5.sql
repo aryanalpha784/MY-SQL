@@ -1,0 +1,69 @@
+#Basic Syntax
+SELECT ROLL, NAME FROM students;
+
+#To Select all
+SELECT * FROM students;
+
+#Where Clause
+SELECT * FROM students WHERE MARKS > 80;
+SELECT * FROM students WHERE CITY = "DELHI";
+SELECT *
+FROM students 
+WHERE MARKS > 80 AND CITY = "DELHI";
+
+#USING OPERATORS IN WHERE CLAUSE
+#ARITHMETIC OPERATORS
+SELECT *
+FROM students
+WHERE MARKS + 10 > 100;
+
+#COMPARISON OPERATORS
+SELECT *
+FROM students
+WHERE MARKS = 93;
+
+#OPERATORS
+#And
+SELECT *
+FROM students
+WHERE MARKS > 80 AND CITY = "DELHI";
+
+#OR
+SELECT *
+FROM students
+WHERE MARKS > 80 OR CITY = "MUMBAI";
+
+#Between
+SELECT *
+FROM students
+WHERE MARKS BETWEEN 80 AND 90;
+
+#in
+SELECT *
+FROM students
+WHERE CITY IN ("DELHI", "MUMBAI");
+
+#NOT IN
+SELECT *
+FROM students
+WHERE CITY NOT IN ("DELHI", "MUMBAI");
+
+#LIMIT CLAUSE  NO. OF ROWS LIMIT
+SELECT *
+FROM students
+WHERE MARKS >= 80
+LIMIT 1;
+
+#ORDER BY CLAUSE - TO SORT IN ascending order(ASC) OR decending order(DESC)
+SELECT * 
+FROM students
+ORDER BY CITY ASC;
+
+#AGGREGATE FUNCTION - Perform a calculation on a set of values and return a single value.
+SELECT AVG(marks)
+FROM students;
+
+#GROUP BY CLAUSE - GENERALLY WE USE GROUP BY WITH SOME AGGREGATE FUNCTION
+SELECT CITY,COUNT(NAME)
+FROM students
+GROUP BY CITY;

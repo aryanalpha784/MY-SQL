@@ -1,0 +1,15 @@
+CREATE DATABASE college;
+
+USE college;
+
+CREATE TABLE students (
+ID INT PRIMARY KEY,
+NAME VARCHAR(50),
+AGE INT NOT NULL
+);
+
+INSERT INTO students VALUES (101, "ARYAN", 23);
+INSERT INTO students VALUES (102, "AMAN", 23);
+INSERT INTO students VALUES (103, "RAHUL", 22);
+
+SELECT * FROM students;
