@@ -1,0 +1,14 @@
+SELECT NAME, MARKS
+FROM school
+WHERE MARKS > (SELECT AVG(MARKS) FROM school);
+
+SELECT NAME, ROLL_NO
+FROM school
+WHERE ROLL_NO IN (
+      SELECT ROLL_NO
+      FROM school
+      WHERE ROLL_NO % 2 = 0);
+      
+SELECT MAX(MARKS)
+FROM school
+WHERE CITY = "Delhi";
