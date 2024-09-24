@@ -1,0 +1,38 @@
+#Aggregate Windows Functions
+
+SELECT new_id, new_cat,
+SUM(new_id) OVER (PARTITION BY new_cat ORDER BY new_id) AS "Total",
+AVG(new_id) OVER (PARTITION BY new_cat ORDER BY new_id) AS "Average",
+COUNT(new_id) OVER (PARTITION BY new_cat ORDER BY new_id) AS "Count",
+MIN(new_id) OVER (PARTITION BY new_cat ORDER BY new_id) AS "Min",
+MAX(new_id) OVER (PARTITION BY new_cat ORDER BY new_id) AS "Max"
+FROM students;
+
+#NOTE: Above we have used "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING" which will give a SINGLE output based on all INPUT Values/PARTITION(if used)
+#Without Partition
+
+SELECT new_id, new_cat,
+SUM(new_id) OVER (ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Total",
+AVG(new_id) OVER (ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Average",
+COUNT(new_id) OVER (ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Count",
+MIN(new_id) OVER (ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Min",
+MAX(new_id) OVER (ORDER BY new_id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS "Max"
+FROM students;
+
+#RANKING
+
+SELECT new_id,
+ROW_NUMBER() OVER(ORDER BY new_id) AS "ROW_NUMBER",
+RANK() OVER(ORDER BY new_id) AS "RANK",
+DENSE_RANK() OVER(ORDER BY new_id) AS "DENSE_RANK",
+PERCENT_RANK() OVER(ORDER BY new_id) AS "PERCENT_RANK"
+FROM students;
+
+#VALUE/ANALYTIC
+
+SELECT new_id,
+FIRST_VALUE(new_id) OVER (ORDER BY new_id) AS "FIRST_VALUE",
+LAST_VALUE(new_id) OVER (ORDER BY new_id) AS "LAST_VALUE",
+LEAD(new_id) OVER (ORDER BY new_id) AS "LEAD",
+LAG(new_id) OVER (ORDER BY new_id) AS "LAG"
+FROM students;
